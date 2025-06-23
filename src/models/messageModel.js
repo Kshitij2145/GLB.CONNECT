@@ -55,6 +55,7 @@ export const markMessageAsSeen = async (messageId) => {
   });
 };
 
+
 export const getUnseenMessages = async (userId) => {
   return prisma.message.findMany({
     where: {

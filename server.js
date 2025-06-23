@@ -76,10 +76,13 @@ async function startServer() {
     console.log('✅ Database connected successfully!');
     
     // Start the server
-httpServer.listen(port, () => {
+    httpServer.listen(port, '0.0.0.0', () => {
+      const publicUrl = process.env.RAILWAY_PUBLIC_DOMAIN
+        ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}/api`
+        : `http://localhost:${port}/api`;
       console.log(`🚀 Server is running on port ${port}`);
       console.log(`📊 Database: PostgreSQL (Railway)`);
-      console.log(`🔗 API URL: http://localhost:${port}/api`);
+      console.log(`🔗 API URL: ${publicUrl}`);
       console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (error) {
